@@ -55,7 +55,7 @@ const PortalPage = () => {
                 className="w-16 h-16 rounded-full object-cover"
               />
               <h1 className="text-5xl md:text-7xl font-bold text-black dark:text-white">
-                AcoFork
+                二叉树树
               </h1>
               <ThemeToggle />
             </HStack>
@@ -105,7 +105,7 @@ const PortalPage = () => {
       <footer className="border-t border-gray-200 dark:border-gray-800 py-8 mt-auto">
         <Container>
           <p className="text-lg text-gray-600 dark:text-gray-400 text-center">
-            © 2026 AcoFork
+            © 2026 二叉树树
           </p>
         </Container>
       </footer>
