@@ -7,6 +7,7 @@ import React from 'react';
 import { Activity, BarChart3, BookOpen, MessageCircle, Palette, Wrench } from 'lucide-react';
 import PortalCard from './PortalCard';
 import ThemeToggle from './ThemeToggle';
+import SiteFooter from './SiteFooter';
 
 const PortalPage = () => {
   const portalItems = [
@@ -101,14 +102,8 @@ const PortalPage = () => {
         </VStack>
       </Container>
 
-      {/* 底部 Footer */}
-      <footer className="border-t border-gray-200 dark:border-gray-800 py-8 mt-auto">
-        <Container>
-          <p className="text-lg text-gray-600 dark:text-gray-400 text-center">
-            © 2026 二叉树树
-          </p>
-        </Container>
-      </footer>
+      {/* 底部 Footer：友链 / 赞助 / 版权 */}
+      <SiteFooter />
     </div>
   );
 };
