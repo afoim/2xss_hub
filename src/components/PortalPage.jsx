@@ -33,12 +33,12 @@ const PortalPage = () => {
     },
     {
       title: '统计分析',
-      url: 'https://stat.acofork.com',
+      url: 'https://umami.2x.nz',
       icon: <BarChart3 size={48} />,
     },
     {
       title: '服务状态',
-      url: 'https://up.acofork.com',
+      url: 'https://status.2x.nz',
       icon: <Activity size={48} />,
     }
   ];
