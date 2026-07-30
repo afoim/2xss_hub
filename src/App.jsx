@@ -9,7 +9,7 @@ const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <ThemeProvider attribute="class" defaultTheme="light" themes={['light', 'dark']}>
+    <ThemeProvider attribute="class" defaultTheme="system" themes={['light', 'dark']}>
       <TooltipProvider>
         <Toaster />
         <HashRouter>
