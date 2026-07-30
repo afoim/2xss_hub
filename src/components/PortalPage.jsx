@@ -49,13 +49,13 @@ const PortalPage = () => {
         <VStack className="gap-16">
           {/* 头部区域 */}
           <VStack className="gap-6 text-center">
-            <HStack className="justify-center items-center gap-8">
-              <img 
-                src="https://q2.qlogo.cn/headimg_dl?dst_uin=2726730791&spec=0" 
-                alt="Logo" 
+            <HStack className="justify-center items-center gap-3 sm:gap-6 md:gap-8">
+              <img
+                src="https://q2.qlogo.cn/headimg_dl?dst_uin=2726730791&spec=0"
+                alt="Logo"
                 className="w-16 h-16 rounded-full object-cover"
               />
-              <h1 className="text-5xl md:text-7xl font-bold text-black dark:text-white">
+              <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold text-black dark:text-white whitespace-nowrap">
                 二叉树树
               </h1>
               <ThemeToggle />
