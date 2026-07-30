@@ -19,9 +19,9 @@ const ThemeToggle = () => {
       aria-label="切换主题"
     >
       {theme === 'dark' ? (
-        <Sun className="h-5 w-5" />
-      ) : (
         <Moon className="h-5 w-5" />
+      ) : (
+        <Sun className="h-5 w-5" />
       )}
     </Button>
   );
