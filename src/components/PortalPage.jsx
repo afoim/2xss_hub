@@ -33,7 +33,7 @@ const PortalPage = () => {
     },
     {
       title: '统计分析',
-      url: 'https://umami.2x.nz',
+      url: 'https://umami.2x.nz/share/CdkXbGgZr6ECKOyK',
       icon: <BarChart3 size={48} />,
     },
     {
