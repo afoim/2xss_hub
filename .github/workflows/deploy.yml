@@ -1,20 +1,19 @@
-name: Deploy to main
+name: Deploy
 
 on:
-  push:
-    branches:
-      - edit
-
-permissions:
-  contents: write
+  workflow_dispatch:
 
 jobs:
-  build-and-deploy:
+  build-and-publish:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+
     steps:
       - uses: actions/checkout@v4
         with:
-          path: source
+          ref: edit
 
       - uses: pnpm/action-setup@v4
         with:
@@ -24,31 +23,23 @@ jobs:
         with:
           node-version: 18
           cache: pnpm
-          cache-dependency-path: source/pnpm-lock.yaml
 
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
-        working-directory: source
+      - run: pnpm install --frozen-lockfile
 
-      - name: Build project
-        run: pnpm build
-        working-directory: source
+      - run: pnpm build
 
-      - uses: actions/checkout@v4
-        with:
-          ref: main
-          path: deploy
-
-      - name: Copy build artifacts to deploy
+      - name: 推送产物到 main
+        env:
+          TOKEN: ${{ github.token }}
         run: |
-          rm -rf deploy/*
-          cp -r source/dist/* deploy/
-
-      - name: Commit and push to main
-        run: |
-          cd deploy
-          git config user.name github-actions
-          git config user.email github-actions@github.com
-          git add .
-          git diff --staged --quiet || git commit -m "Deploy from edit branch"
-          git push
+          cd dist
+          git init -q -b main
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -q \
+            -m "build: ${GITHUB_SHA:0:7} 的构建产物" \
+            -m "workflow: ${GITHUB_WORKFLOW} #${GITHUB_RUN_NUMBER}"
+          git push --force \
+            "https://x-access-token:${TOKEN}@github.com/${GITHUB_REPOSITORY}.git" \
+            HEAD:main
