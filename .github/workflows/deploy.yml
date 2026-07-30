@@ -30,11 +30,15 @@ jobs:
 
       - run: pnpm build
 
-      - name: 推送产物到 main
+      - name: 推送产物到 main（dist/ 子目录 + wrangler.jsonc）
         env:
           TOKEN: ${{ github.token }}
         run: |
-          cd dist
+          WORKDIR="$(mktemp -d)"
+          cp -r dist "$WORKDIR/dist"
+          cp wrangler.jsonc "$WORKDIR/"
+
+          cd "$WORKDIR"
           git init -q -b main
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -45,3 +49,4 @@ jobs:
           git push --force \
             "https://x-access-token:${TOKEN}@github.com/${GITHUB_REPOSITORY}.git" \
             HEAD:main
+          rm -rf "$WORKDIR"
