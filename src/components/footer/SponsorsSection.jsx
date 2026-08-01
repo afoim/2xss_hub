@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSponsors } from '@/lib/fas';
 import CollapsibleSection from './CollapsibleSection';
+import SubmitHint from './SubmitHint';
 import Avatar from './Avatar';
 
 const SponsorsSection = () => {
@@ -13,6 +14,10 @@ const SponsorsSection = () => {
       isLoading={isLoading}
       isError={isError}
     >
+      {/* 说明放开头，和友链区同一份组件 —— 原先那条「赞助入口在 2x.nz/sponsors」
+          已经是死链：2x.nz 现在整站重定向，/sponsors 会 302 回门户页本身 */}
+      <SubmitHint dir="sponsors" lead="感谢每一位赞助者。想补一条赞助记录？" />
+
       <div className="grid grid-cols-1 border-t border-gray-200 dark:border-gray-800 sm:grid-cols-2 sm:border-l lg:grid-cols-3 xl:grid-cols-4">
         {sponsors.map((sponsor, i) => (
           <div
@@ -36,19 +41,6 @@ const SponsorsSection = () => {
           </div>
         ))}
       </div>
-
-      <p className="pt-4 text-xs text-gray-500 dark:text-gray-400">
-        感谢每一位赞助者。赞助入口在{' '}
-        <a
-          href="https://2x.nz/sponsors"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="underline underline-offset-2 hover:text-gray-900 dark:hover:text-gray-100"
-        >
-          2x.nz/sponsors
-        </a>
-        。
-      </p>
     </CollapsibleSection>
   );
 };

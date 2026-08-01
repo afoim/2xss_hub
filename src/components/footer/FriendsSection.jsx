@@ -1,7 +1,8 @@
 import React from 'react';
-import { Crown, ExternalLink } from 'lucide-react';
-import { useFriends, FAS_REPO } from '@/lib/fas';
+import { Crown } from 'lucide-react';
+import { useFriends } from '@/lib/fas';
 import CollapsibleSection from './CollapsibleSection';
+import SubmitHint from './SubmitHint';
 import Avatar from './Avatar';
 
 const FriendsSection = () => {
@@ -14,6 +15,9 @@ const FriendsSection = () => {
       isLoading={isLoading}
       isError={isError}
     >
+      {/* 本站不跑自动 PR，加友链一律回数据仓库提交文件 */}
+      <SubmitHint dir="friends" lead="想交换友链？" />
+
       {/* 连体网格线：容器出上/左边框，每格出下/右边框，
           竖线只在多列断点之后才有意义，单列时全靠横线分隔 */}
       <div className="grid grid-cols-1 border-t border-gray-200 dark:border-gray-800 sm:grid-cols-2 sm:border-l lg:grid-cols-3">
@@ -57,22 +61,6 @@ const FriendsSection = () => {
           </a>
         ))}
       </div>
-
-      {/* 本站不跑自动 PR，加友链一律回数据仓库提交文件 */}
-      <p className="pt-4 text-xs text-gray-500 dark:text-gray-400">
-        想交换友链？到{' '}
-        <a
-          href={`${FAS_REPO}/tree/main/data/friends`}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-1 underline underline-offset-2 hover:text-gray-900 dark:hover:text-gray-100"
-        >
-          数据仓库
-          <ExternalLink size={11} />
-        </a>{' '}
-        的 <code className="bg-gray-100 px-1 dark:bg-gray-800">data/friends</code> 下新建一个 JSON 文件，
-        自动校验通过后就会出现在这里。
-      </p>
     </CollapsibleSection>
   );
 };
